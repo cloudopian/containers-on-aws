@@ -1,0 +1,25 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: my-eks-cluster
+  region: ap-southeast-2
+vpc:
+  id: "vpc-09ab8a7e250fa2b28"
+  cidr: "10.0.0.0/16"
+  subnets:
+    public:
+      ap-southeast-2a:
+          id: subnet-083fc3a33831a9c90
+          cidr: 10.0.1.0/24
+      ap-southeast-2b:
+          id: subnet-0aaa4098207330b88
+          cidr: 10.0.2.0/24      
+    private:
+      ap-southeast-2a:
+          id: subnet-0a8c3ee02a23c5540
+          cidr: 10.0.3.0/24
+      ap-southeast-2b:
+          id: subnet-09a11e19032195a51
+          cidr: 10.0.4.0/24
+iam:
+  serviceRoleARN: "arn:aws:iam::240742151922:role/Container-MyEKSServiceRole"

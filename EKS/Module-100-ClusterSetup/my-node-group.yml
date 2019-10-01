@@ -1,0 +1,24 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: my-eks-cluster
+  region: ap-southeast-2
+
+nodeGroups:
+  - name: ng-my-web
+    labels: { role: myfrontends, department: finance }
+    instanceType: t2.medium
+    desiredCapacity: 2
+    iam:
+      instanceProfileARN: "arn:aws:iam::240742151922:instance-profile/Container-MyEKSNodeRole"
+      instanceRoleARN: "arn:aws:iam::240742151922:role/Container-MyEKSNodeRole"
+    privateNetworking: false
+  - name: ng-my-batch
+    labels: { role: mybackends }
+    instanceType: t2.small
+    desiredCapacity: 2
+    iam:
+      instanceProfileARN: "arn:aws:iam::240742151922:instance-profile/Container-MyEKSNodeRole"
+      instanceRoleARN: "arn:aws:iam::240742151922:role/Container-MyEKSNodeRole"
+    privateNetworking: true
